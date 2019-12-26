@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".updatedata.ProfDetailAct"
+    android:background="@color/backgroundApp">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:scrollbars="none"
+        android:layout_centerInParent="true"
+        android:layout_height="wrap_content">
+
+
+        <LinearLayout
+            android:padding="@dimen/margin_top10"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:text="Designation"
+                android:textColor="@android:color/darker_gray"
+                android:layout_width="wrap_content"
+                android:layout_marginTop="@dimen/margin_top10"
+                android:layout_height="wrap_content"/>
+            <EditText
+                android:id="@+id/designationET"
+                android:hint="Designation"
+                android:layout_marginTop="@dimen/margin_top10"
+                android:layout_width="match_parent"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:background="@drawable/et_back"
+                android:paddingLeft="@dimen/margin_top10"
+                android:paddingRight="@dimen/margin_top10"
+                android:layout_height="@dimen/et_hight"/>
+
+
+            <TextView
+                android:text="Company Name"
+                android:textColor="@android:color/darker_gray"
+                android:layout_width="wrap_content"
+                android:layout_marginTop="@dimen/margin_top10"
+                android:layout_height="wrap_content"/>
+            <EditText
+                android:id="@+id/comapnyET"
+                android:hint="Company Name"
+                android:layout_marginTop="@dimen/margin_top10"
+                android:layout_width="match_parent"
+                android:background="@drawable/et_back"
+                android:singleLine="true"
+                android:inputType="text"
+                android:paddingLeft="@dimen/margin_top10"
+                android:maxLines="1"
+                android:paddingRight="@dimen/margin_top10"
+                android:layout_height="@dimen/et_hight"/>
+
+            <TextView
+                android:text="Start Year"
+                android:textColor="@android:color/darker_gray"
+                android:layout_width="wrap_content"
+                android:layout_marginTop="@dimen/margin_top10"
+                android:layout_height="wrap_content"/>
+            <EditText
+                android:id="@+id/start_yr_et"
+                android:hint="YYYY"
+                android:layout_marginTop="@dimen/margin_top10"
+                android:layout_width="match_parent"
+                android:singleLine="true"
+                android:maxLength="4"
+                android:background="@drawable/et_back"
+                android:maxLines="1"
+                android:paddingLeft="@dimen/margin_top10"
+                android:inputType="number"
+                android:paddingRight="@dimen/margin_top10"
+                android:layout_height="@dimen/et_hight"/>
+
+            <TextView
+                android:text="End Year"
+                android:textColor="@android:color/darker_gray"
+                android:layout_width="wrap_content"
+                android:layout_marginTop="@dimen/margin_top10"
+                android:layout_height="wrap_content"/>
+            <EditText
+                android:id="@+id/end_yr_et"
+                android:inputType="number"
+                android:hint="YYYY"
+                android:layout_marginTop="@dimen/margin_top10"
+                android:layout_width="match_parent"
+                android:singleLine="true"
+                android:maxLength="4"
+                android:background="@drawable/et_back"
+                android:maxLines="1"
+                android:paddingLeft="@dimen/margin_top10"
+                android:paddingRight="@dimen/margin_top10"
+                android:layout_height="@dimen/et_hight"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:orientation="horizontal"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:id="@+id/update_pi_btn"
+                    android:text="Update"
+                    android:background="@drawable/button_back"
+                    android:gravity="center"
+                    android:layout_marginTop="@dimen/margin_top20"
+                    android:layout_width="150dp"
+                    android:textColor="@android:color/white"
+                    android:layout_height="wrap_content"/>
+
+                <Button
+                    android:id="@+id/cancel_update_btn"
+                    android:text="Cancel"
+                    android:layout_marginLeft="@dimen/margin_top10"
+                    android:background="@drawable/button_back"
+                    android:gravity="center"
+                    android:textColor="@android:color/white"
+                    android:layout_marginTop="@dimen/margin_top20"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
+</RelativeLayout>

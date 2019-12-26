@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <dimen name="margin_top10">10dp</dimen>
+    <dimen name="margin_top20">20dp</dimen>
+    <dimen name="margin_top40">40dp</dimen>
+    <dimen name="margin_left20">20dp</dimen>
+    <dimen name="margin_right20">20dp</dimen>
+
+
+    <dimen name="width_img">180dp</dimen>
+    <dimen name="hight_img">180dp</dimen>
+
+    <dimen name="et_hight">90dp</dimen>
+
+    <dimen name="card_height">250dp</dimen>
+
+</resources>

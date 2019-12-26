@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".updatedata.UpdatePIAct"
+    android:background="@color/backgroundApp">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:scrollbars="none"
+        android:layout_centerInParent="true"
+        android:layout_height="wrap_content">
+
+
+        <LinearLayout
+            android:padding="@dimen/margin_top10"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:text="Full Name"
+                android:textColor="@android:color/darker_gray"
+                android:layout_width="wrap_content"
+                android:layout_marginTop="@dimen/margin_top10"
+                android:layout_height="wrap_content"/>
+            <EditText
+                android:id="@+id/nameET"
+                android:hint="Full Name"
+                android:layout_marginTop="@dimen/margin_top10"
+                android:layout_width="match_parent"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:background="@drawable/et_back"
+                android:paddingLeft="@dimen/margin_top10"
+                android:paddingRight="@dimen/margin_top10"
+                android:layout_height="@dimen/et_hight"/>
+
+
+            <TextView
+                android:text="Mobile No."
+                android:textColor="@android:color/darker_gray"
+                android:layout_width="wrap_content"
+                android:layout_marginTop="@dimen/margin_top10"
+                android:layout_height="wrap_content"/>
+            <EditText
+                android:id="@+id/mobileET"
+                android:hint="Mobile No"
+                android:layout_marginTop="@dimen/margin_top10"
+                android:layout_width="match_parent"
+                android:background="@drawable/et_back"
+                android:singleLine="true"
+                android:inputType="number"
+                android:digits="0123456789"
+                android:paddingLeft="@dimen/margin_top10"
+                android:maxLines="1"
+                android:paddingRight="@dimen/margin_top10"
+                android:layout_height="@dimen/et_hight"/>
+
+            <TextView
+                android:text="Address"
+                android:textColor="@android:color/darker_gray"
+                android:layout_width="wrap_content"
+                android:layout_marginTop="@dimen/margin_top10"
+                android:layout_height="wrap_content"/>
+            <EditText
+                android:id="@+id/addressET"
+                android:hint="Address"
+                android:layout_marginTop="@dimen/margin_top10"
+                android:layout_width="match_parent"
+                android:singleLine="true"
+                android:background="@drawable/et_back"
+                android:maxLines="1"
+                android:paddingLeft="@dimen/margin_top10"
+                android:paddingRight="@dimen/margin_top10"
+                android:layout_height="@dimen/et_hight"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:orientation="horizontal"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:id="@+id/update_pi_btn"
+                    android:text="Update"
+                    android:background="@drawable/button_back"
+                    android:gravity="center"
+                    android:layout_marginTop="@dimen/margin_top20"
+                    android:layout_width="150dp"
+                    android:textColor="@android:color/white"
+                    android:layout_height="wrap_content"/>
+
+                <Button
+                    android:id="@+id/cancel_update_btn"
+                    android:text="Cancel"
+                    android:layout_marginLeft="@dimen/margin_top10"
+                    android:background="@drawable/button_back"
+                    android:gravity="center"
+                    android:textColor="@android:color/white"
+                    android:layout_marginTop="@dimen/margin_top20"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
+</RelativeLayout>
