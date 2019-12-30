@@ -52,7 +52,7 @@
                         android:drawableLeft="@drawable/ic_action_email"
                         android:drawablePadding="10dp"
                         android:hint="Email"
-                        android:text="sangha@test.com"
+                        android:text=""
                         android:inputType="textWebEmailAddress" />
 
                     <EditText
@@ -62,7 +62,7 @@
                         android:layout_marginTop="@dimen/margin_top10"
                         android:singleLine="true"
                         android:maxLines="1"
-                        android:text="12345678"
+                        android:text=""
                         android:drawableLeft="@drawable/ic_action_pass"
                         android:drawablePadding="10dp"
                         android:hint="Password"
