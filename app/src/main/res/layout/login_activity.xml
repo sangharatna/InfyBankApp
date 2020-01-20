@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/backgroundApp"
-    tools:context=".LoginActivity">
+    tools:context=".login.view.LoginActivity">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -47,26 +47,26 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/margin_top10"
-                        android:singleLine="true"
-                        android:maxLines="1"
                         android:drawableLeft="@drawable/ic_action_email"
                         android:drawablePadding="10dp"
                         android:hint="Email"
-                        android:text="sangha@test.com"
-                        android:inputType="textWebEmailAddress" />
+                        android:inputType="textWebEmailAddress"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:text="sachinnikam00@gmail.com" />
 
                     <EditText
                         android:id="@+id/passET"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/margin_top10"
-                        android:singleLine="true"
-                        android:maxLines="1"
-                        android:text="12345678"
                         android:drawableLeft="@drawable/ic_action_pass"
                         android:drawablePadding="10dp"
                         android:hint="Password"
-                        android:inputType="textPassword" />
+                        android:inputType="textPassword"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:text="12345678" />
 
 
                     <LinearLayout
@@ -76,21 +76,21 @@
                         android:orientation="horizontal">
 
                         <Button
+                            android:id="@+id/signin"
                             style="@style/Widget.AppCompat.Button.Colored"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:id="@+id/signin"
-                            android:background="@drawable/button_login"
                             android:layout_weight="1"
+                            android:background="@drawable/button_login"
                             android:text="Sign in" />
 
                         <Button
+                            android:id="@+id/register_btn"
                             style="@style/Widget.AppCompat.Button.Colored"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:background="@drawable/button_login"
-                            android:id="@+id/register_btn"
                             android:text="Register" />
 
                     </LinearLayout>
@@ -105,9 +105,9 @@
                             android:layout_height="40dp"
                             android:layout_centerInParent="true"
                             android:gravity="center"
-                            android:visibility="invisible"
                             android:text="Forget Password ?"
-                            android:textColor="@android:color/darker_gray" />
+                            android:textColor="@android:color/darker_gray"
+                            android:visibility="invisible" />
 
                     </RelativeLayout>
 

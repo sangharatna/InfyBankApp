@@ -1,17 +1,27 @@
-package com.app.infybankapp.updatedata
+package com.app.infybankapp.view.updatedata
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.MenuItem
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.app.infybankapp.AppClass
 import com.app.infybankapp.R
-import com.google.firebase.database.FirebaseDatabase
+import com.app.infybankapp.application.AppClass
+import com.app.infybankapp.di.DaggerFirebaseComponent
+import com.app.infybankapp.di.FirebaseComponent
+import com.app.infybankapp.di.FirebaseModule
+import com.google.firebase.database.DatabaseReference
 import kotlinx.android.synthetic.main.activity_update_edu.*
 import org.json.JSONObject
+import javax.inject.Inject
 
 class UpdateEduAct : AppCompatActivity() {
+
+    lateinit var myComponent: FirebaseComponent
+    @Inject
+    lateinit var databaseReference: DatabaseReference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,21 +30,25 @@ class UpdateEduAct : AppCompatActivity() {
         supportActionBar?.title = "Update Education Info"
 
 
+        //injecting firebase module
+        myComponent = DaggerFirebaseComponent.builder().firebaseModule(FirebaseModule()).build() as DaggerFirebaseComponent
+        myComponent.inject(this)
+
+        AppClass.myObjectUnderTest = this
+
         cancel_update_btn.setOnClickListener {
             finish()
         }
         update_pi_btn.setOnClickListener {
 
-            if(isValidate()) {
+            if(isValidate(nameET.text.toString(), percentET.text.toString(), yearET.text.toString())) {
                 var jsonObject: JSONObject = JSONObject()
                 jsonObject.put("degree",nameET.text.toString())
                 jsonObject.put("percentage",percentET.text.toString())
                 jsonObject.put("year",yearET.text.toString())
 
-                val taskId = AppClass.userObject.id;
-                val database = FirebaseDatabase.getInstance()
-                val userRef = database.getReference("userData")
-                val taskRef = userRef.child(taskId!!)
+                val taskId = AppClass.userObject.id
+                val taskRef = databaseReference.child(taskId!!)
 
                 AppClass.userObject.education = jsonObject.toString()
 
@@ -46,7 +60,8 @@ class UpdateEduAct : AppCompatActivity() {
                     Toast.LENGTH_SHORT
                 ).show()
 
-                AppClass.updateSavedList(AppClass.userObject)
+                AppClass.updateSavedList(
+                    AppClass.userObject)
 
                 finish()
             }
@@ -63,28 +78,37 @@ class UpdateEduAct : AppCompatActivity() {
 
     }
 
-    fun isValidate():Boolean
+    fun isValidate(name:String,percent:String,year:String):Boolean
     {
 
-        if(nameET.text.isEmpty())
-        {
-            nameET.error = "Enter Degree"
-            showError(nameET)
-            return false
-        }else if(percentET.text.isEmpty())
-        {
-            percentET.error = "Enter Percentage"
-            showError(percentET)
-            return false
-        }else if(yearET.text.isEmpty() || yearET.text.length!=4 )
-        {
-            yearET.error = "Enter Passing Year"
-            showError(yearET)
-            return false
+        var booleanValue = false
+
+        try {
+            if(name.isEmpty())
+            {
+                booleanValue =false
+                nameET.error = "Enter Degree"
+                //showError(nameET)
+            }else if(percent.isEmpty())
+            {
+                booleanValue =false
+                percentET.error = "Enter Percentage"
+                //showError(percentET)
+            }else if(year.isEmpty() || year.length!=4 )
+            {
+                booleanValue =false
+                yearET.error = "Enter Passing Year"
+                //showError(yearET)
+            }
+            else
+                booleanValue =true
+        } catch (e: Exception) {
+            e.printStackTrace()
         }
-        else
-            return true
+
+        return booleanValue
     }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
         if(item.itemId == android.R.id.home)

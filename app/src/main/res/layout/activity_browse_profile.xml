@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/backgroundApp"
-    tools:context=".ViewProfile">
+    tools:context=".viewprofile.view.ViewProfile">
 
     <ScrollView
         android:layout_width="match_parent"

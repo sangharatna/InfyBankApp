@@ -1,23 +1,39 @@
-package com.app.infybankapp.updatedata
+package com.app.infybankapp.view.updatedata
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import android.widget.EditText
 import android.widget.Toast
-import com.app.infybankapp.AppClass
+import com.app.infybankapp.application.AppClass
 import com.app.infybankapp.R
+import com.app.infybankapp.di.DaggerFirebaseComponent
+import com.app.infybankapp.di.FirebaseComponent
+import com.app.infybankapp.di.FirebaseModule
+import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_update_summary.*
+import javax.inject.Inject
 
 class UpdateSummary : AppCompatActivity() {
+
+
+    lateinit var myComponent: FirebaseComponent
+    @Inject
+    lateinit var databaseReference: DatabaseReference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_update_summary)
 
+        //injecting firebase module
+        myComponent = DaggerFirebaseComponent.builder().firebaseModule(FirebaseModule()).build() as DaggerFirebaseComponent
+        myComponent.inject(this)
+
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.title = "Update Summary"
+
+        AppClass.myObjectSummaryTest = this
 
         summaryET.setText(AppClass.userObject.summary)
 
@@ -26,12 +42,10 @@ class UpdateSummary : AppCompatActivity() {
         }
         update_pi_btn.setOnClickListener {
 
-            if(isValidate())
+            if(isValidate(summaryET.text.toString()))
             {
-                val taskId = AppClass.userObject.id;
-                val database = FirebaseDatabase.getInstance()
-                val userRef = database.getReference("userData")
-                val taskRef = userRef.child(taskId!!)
+                val taskId = AppClass.userObject.id
+                val taskRef = databaseReference.child(taskId!!)
 
                 AppClass.userObject.summary = summaryET.text.toString()
 
@@ -43,7 +57,8 @@ class UpdateSummary : AppCompatActivity() {
                     Toast.LENGTH_SHORT
                 ).show()
 
-                AppClass.updateSavedList(AppClass.userObject)
+                AppClass.updateSavedList(
+                    AppClass.userObject)
 
                 finish()
             }
@@ -63,21 +78,29 @@ class UpdateSummary : AppCompatActivity() {
         super.onBackPressed()
         overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out)
     }
-    fun isValidate():Boolean
+    fun isValidate(summary:String):Boolean
     {
-        if(summaryET.text.isEmpty())
+        var booleanValue = false
+
+        try{
+        if(summary.isEmpty())
         {
+            booleanValue =false
             summaryET.error = "Enter Summary"
-            showError(summaryET)
-            return false
-        }else if(summaryET.text.length<5) {
+            //showError(summaryET)
+
+        }else if(summary.length<5) {
+            booleanValue =false
             summaryET.error = "Mimimum 5 char required"
-            showError(summaryET)
-            return false
+            //showError(summaryET)
+
         }else
-        {
-            return true
-        }
+            booleanValue =true
+    } catch (e: Exception) {
+        e.printStackTrace()
+    }
+
+    return booleanValue
     }
 
     fun showError(editText: EditText)

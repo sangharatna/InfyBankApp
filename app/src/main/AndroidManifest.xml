@@ -5,7 +5,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:name=".AppClass"
+        android:name=".application.AppClass"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -13,38 +13,39 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".updatedata.ProfDetailAct" android:screenOrientation="portrait"
+        <activity android:name="com.app.infybankapp.view.updatedata.ProfDetailAct" android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize"/>
         <activity
-            android:name=".updatedata.UpdateEduAct"
+            android:name="com.app.infybankapp.view.updatedata.UpdateEduAct"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".updatedata.UpdateSummary"
+            android:name="com.app.infybankapp.view.updatedata.UpdateSummary"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".ViewProfile"
+            android:name=".viewprofile.view.ViewProfile"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".BrowseProfiles"
+            android:name=".browseprofile.view.BrowseProfiles"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".OptionActivity"
+            android:name=".option.view.OptionActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".updatedata.UpdatePIAct"
+            android:name="com.app.infybankapp.view.updatedata.UpdatePIAct"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".RegisterActivity"
+            android:name=".registration.view.RegisterActivity"
             android:screenOrientation="portrait"
+
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".DashboardActivity"
+            android:name=".dashboard.view.DashboardActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".SplashActivity"
+            android:name=".splash.view.SplashActivity"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen">
             <intent-filter>
@@ -54,7 +55,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".LoginActivity"
+            android:name=".login.view.LoginActivity"
             android:label="Login"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize" />
