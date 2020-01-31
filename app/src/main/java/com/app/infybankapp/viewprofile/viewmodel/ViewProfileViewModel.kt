@@ -30,14 +30,14 @@ class ViewProfileViewModel(application: Application) :AndroidViewModel(applicati
                         jsonObject.getString("percentage") + "%\nPassing Year : " +
                         jsonObject.getString("year")
 
-                viewProfile. education_tv.setText(eduString)
+                viewProfile.education_tv.text = eduString
             } else {
-                viewProfile.education_tv.setText("NA")
+                viewProfile.education_tv.text = "NA"
             }
 
         } catch (e: Exception) {
             e.printStackTrace()
-            viewProfile.education_tv.setText("NA")
+            viewProfile.education_tv.text = "NA"
         }
 
 
@@ -51,14 +51,14 @@ class ViewProfileViewModel(application: Application) :AndroidViewModel(applicati
                         jsonObject.getString("company") + "\n" +
                         jsonObject.getString("start") + " - " + jsonObject.getString("end")
 
-                viewProfile.prof_tv.setText(eduString)
+                viewProfile.prof_tv.text = eduString
             } else {
-                viewProfile.prof_tv.setText("NA")
+                viewProfile.prof_tv.text = "NA"
             }
 
         } catch (e: Exception) {
             e.printStackTrace()
-            viewProfile.prof_tv.setText("NA")
+            viewProfile.prof_tv.text = "NA"
         }
     }
 

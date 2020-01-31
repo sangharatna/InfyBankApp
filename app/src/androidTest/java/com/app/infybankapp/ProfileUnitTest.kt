@@ -1,12 +1,7 @@
-import android.content.Context
 import com.app.infybankapp.application.AppClass
-import com.app.infybankapp.view.updatedata.ProfDetailAct
 import org.junit.Test
 import org.junit.Assert.assertFalse
-import org.junit.Assert.assertTrue
 import org.junit.runner.RunWith
-import org.mockito.Mockito.*
-import org.mockito.Mock
 import org.mockito.runners.MockitoJUnitRunner
 import org.junit.Assert.assertThat
 import org.hamcrest.core.Is.`is`

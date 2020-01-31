@@ -1,7 +1,8 @@
-package com.app.infybankapp.view.updatedata
+package com.app.infybankapp.updatedata
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
 import android.view.MenuItem
 import android.widget.EditText
 import android.widget.Toast
@@ -11,8 +12,9 @@ import com.app.infybankapp.di.DaggerFirebaseComponent
 import com.app.infybankapp.di.FirebaseComponent
 import com.app.infybankapp.di.FirebaseModule
 import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_update_summary.*
+import kotlinx.android.synthetic.main.activity_update_summary.cancel_update_btn
+import kotlinx.android.synthetic.main.activity_update_summary.update_pi_btn
 import javax.inject.Inject
 
 class UpdateSummary : AppCompatActivity() {
@@ -35,7 +37,7 @@ class UpdateSummary : AppCompatActivity() {
 
         AppClass.myObjectSummaryTest = this
 
-        summaryET.setText(AppClass.userObject.summary)
+        summaryET.text = (AppClass.userObject.summary).toEditable()
 
         cancel_update_btn.setOnClickListener {
             finish()
@@ -47,7 +49,9 @@ class UpdateSummary : AppCompatActivity() {
                 val taskId = AppClass.userObject.id
                 val taskRef = databaseReference.child(taskId!!)
 
-                AppClass.userObject.summary = summaryET.text.toString()
+                AppClass.userObject.let{ it ->
+                    it.summary = summaryET.text.toString()
+                }
 
                 taskRef.setValue(AppClass.userObject)
 
@@ -108,4 +112,5 @@ class UpdateSummary : AppCompatActivity() {
         editText.requestFocus()
         editText.isFocusableInTouchMode=true
     }
+    fun String.toEditable(): Editable =  Editable.Factory.getInstance().newEditable(this)
 }

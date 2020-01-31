@@ -13,14 +13,17 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name="com.app.infybankapp.view.updatedata.ProfDetailAct" android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustResize"/>
+
         <activity
-            android:name="com.app.infybankapp.view.updatedata.UpdateEduAct"
+            android:name=".updatedata.ProfDetailAct"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name="com.app.infybankapp.view.updatedata.UpdateSummary"
+            android:name=".updatedata.UpdateEduAct"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".updatedata.UpdateSummary"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize" />
         <activity
@@ -33,13 +36,12 @@
             android:name=".option.view.OptionActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.app.infybankapp.view.updatedata.UpdatePIAct"
+            android:name=".updatedata.UpdatePIAct"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".registration.view.RegisterActivity"
             android:screenOrientation="portrait"
-
             android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".dashboard.view.DashboardActivity"

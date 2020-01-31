@@ -21,7 +21,7 @@ class LoginActivityTest {
 
     @Mock
     lateinit var mMockContext: Context
-    lateinit var mMockApplication: Application
+
 
     @Test
     fun readStringFromContext_LocalizedString() {

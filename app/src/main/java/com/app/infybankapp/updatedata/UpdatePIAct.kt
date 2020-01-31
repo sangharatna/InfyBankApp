@@ -1,6 +1,7 @@
-package com.app.infybankapp.view.updatedata
+package com.app.infybankapp.updatedata
 
 import android.os.Bundle
+import android.text.Editable
 import android.view.MenuItem
 import android.widget.EditText
 import android.widget.Toast
@@ -11,8 +12,9 @@ import com.app.infybankapp.di.DaggerFirebaseComponent
 import com.app.infybankapp.di.FirebaseComponent
 import com.app.infybankapp.di.FirebaseModule
 import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_update_pi.*
+import kotlinx.android.synthetic.main.activity_update_pi.cancel_update_btn
+import kotlinx.android.synthetic.main.activity_update_pi.update_pi_btn
 import javax.inject.Inject
 
 class UpdatePIAct : AppCompatActivity() {
@@ -47,9 +49,11 @@ class UpdatePIAct : AppCompatActivity() {
                     val taskId = AppClass.userObject.id
                     val taskRef = databaseReference.child(taskId!!)
 
-                    AppClass.userObject.address = addressET.text.toString()
-                    AppClass.userObject.name = nameET.text.toString()
-                    AppClass.userObject.mobile = mobileET.text.toString()
+                    AppClass.userObject.let{ it ->
+                        it.address = addressET.text.toString()
+                        it.name = nameET.text.toString()
+                        it.mobile = mobileET.text.toString()
+                    }
 
                     taskRef.setValue(AppClass.userObject)
 
@@ -69,9 +73,9 @@ class UpdatePIAct : AppCompatActivity() {
             }
         }
 
-        addressET.setText(AppClass.userObject.address)
-        nameET.setText(AppClass.userObject.name)
-        mobileET.setText(AppClass.userObject.mobile)
+        addressET.text = (AppClass.userObject.address).toEditable()
+        nameET.text = (AppClass.userObject.name).toEditable()
+        mobileET.text = (AppClass.userObject.mobile).toEditable()
 
 
     }
@@ -126,4 +130,5 @@ class UpdatePIAct : AppCompatActivity() {
         editText.requestFocus()
         editText.isFocusableInTouchMode=true
     }
+    fun String.toEditable(): Editable =  Editable.Factory.getInstance().newEditable(this)
 }

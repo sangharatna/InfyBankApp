@@ -5,17 +5,18 @@ import android.os.Bundle
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.app.infybankapp.R
-import com.app.infybankapp.login.viewmodel.LoginViewModel
-import com.app.infybankapp.model.UserData
-import com.app.infybankapp.utilities.Utils
 import com.app.infybankapp.application.AppClass
 import com.app.infybankapp.di.DaggerFirebaseComponent
 import com.app.infybankapp.di.FirebaseComponent
 import com.app.infybankapp.di.FirebaseModule
+import com.app.infybankapp.login.viewmodel.LoginViewModel
+import com.app.infybankapp.model.UserData
 import com.app.infybankapp.option.view.OptionActivity
+import com.app.infybankapp.utilities.Utils
 import com.google.firebase.database.DatabaseReference
 import kotlinx.android.synthetic.main.login_activity.*
 import javax.inject.Inject
@@ -40,11 +41,10 @@ class LoginActivity : AppCompatActivity(){
         myComponent = DaggerFirebaseComponent.builder().firebaseModule(FirebaseModule()).build() as DaggerFirebaseComponent
         myComponent.inject(this)
 
-        /*AppClass.databaseReference = databaseReference*/
         AppClass.userDataList = users
 
         initLoginViewModel()
-0
+
         signin.setOnClickListener {
             try {
                 getDataFromFirebase()

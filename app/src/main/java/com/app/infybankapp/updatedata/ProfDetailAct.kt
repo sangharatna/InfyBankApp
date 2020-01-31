@@ -1,8 +1,7 @@
-package com.app.infybankapp.view.updatedata
+package com.app.infybankapp.updatedata
 
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
+import android.text.Editable
 import android.view.MenuItem
 import android.widget.EditText
 import android.widget.Toast
@@ -13,11 +12,11 @@ import com.app.infybankapp.di.DaggerFirebaseComponent
 import com.app.infybankapp.di.FirebaseComponent
 import com.app.infybankapp.di.FirebaseModule
 import com.google.firebase.database.DatabaseReference
-import kotlinx.android.synthetic.main.activity_update_edu.*
+import kotlinx.android.synthetic.main.activity_prof_detail.*
 import org.json.JSONObject
 import javax.inject.Inject
 
-class UpdateEduAct : AppCompatActivity() {
+class ProfDetailAct : AppCompatActivity() {
 
     lateinit var myComponent: FirebaseComponent
     @Inject
@@ -25,37 +24,43 @@ class UpdateEduAct : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_update_edu)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.title = "Update Education Info"
-
+        setContentView(R.layout.activity_prof_detail)
 
         //injecting firebase module
         myComponent = DaggerFirebaseComponent.builder().firebaseModule(FirebaseModule()).build() as DaggerFirebaseComponent
         myComponent.inject(this)
 
-        AppClass.myObjectUnderTest = this
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.title = "Update Professional Info"
+
+        AppClass.myObjectProfileTest = this
 
         cancel_update_btn.setOnClickListener {
             finish()
         }
         update_pi_btn.setOnClickListener {
 
-            if(isValidate(nameET.text.toString(), percentET.text.toString(), yearET.text.toString())) {
+            if(isValidate(designationET.text.toString(), comapnyET.text.toString(), start_yr_et.text.toString(), end_yr_et.text.toString()))
+            {
+
                 var jsonObject: JSONObject = JSONObject()
-                jsonObject.put("degree",nameET.text.toString())
-                jsonObject.put("percentage",percentET.text.toString())
-                jsonObject.put("year",yearET.text.toString())
+
+                jsonObject.let{ it ->
+                    it.put("design",designationET.text.toString())
+                    it.put("company",comapnyET.text.toString())
+                    it.put("start",start_yr_et.text.toString())
+                    it.put("end",end_yr_et.text.toString())
+                }
 
                 val taskId = AppClass.userObject.id
                 val taskRef = databaseReference.child(taskId!!)
 
-                AppClass.userObject.education = jsonObject.toString()
+                AppClass.userObject.experience = jsonObject.toString()
 
                 taskRef.setValue(AppClass.userObject)
 
                 Toast.makeText(
-                    this@UpdateEduAct,
+                    this@ProfDetailAct,
                     "Update Success",
                     Toast.LENGTH_SHORT
                 ).show()
@@ -68,37 +73,45 @@ class UpdateEduAct : AppCompatActivity() {
         }
 
         try {
-            var jsonObject:JSONObject = JSONObject(AppClass.userObject.education)
-            nameET.setText(jsonObject.getString("degree"))
-            percentET.setText(jsonObject.getString("percentage"))
-            yearET.setText(jsonObject.getString("year"))
+            var jsonObject:JSONObject = JSONObject(AppClass.userObject.experience)
+            designationET.text = jsonObject.getString("design").toEditable()
+            comapnyET.text = (jsonObject.getString("company")).toEditable()
+            start_yr_et.text = (jsonObject.getString("start")).toEditable()
+            end_yr_et.text = (jsonObject.getString("end")).toEditable()
+
+
         } catch (e: Exception) {
             e.printStackTrace()
         }
 
     }
 
-    fun isValidate(name:String,percent:String,year:String):Boolean
+    fun isValidate(designation:String,comapny:String,start_yr:String,end_yr:String):Boolean
     {
-
         var booleanValue = false
 
         try {
-            if(name.isEmpty())
+            if(designation.isEmpty())
             {
                 booleanValue =false
-                nameET.error = "Enter Degree"
-                //showError(nameET)
-            }else if(percent.isEmpty())
+                designationET.error = "Enter Designation"
+
+            }else if(comapny.isEmpty())
             {
                 booleanValue =false
-                percentET.error = "Enter Percentage"
-                //showError(percentET)
-            }else if(year.isEmpty() || year.length!=4 )
+                comapnyET.error = "Enter Company Name"
+
+            }else if(start_yr.isEmpty() )
             {
                 booleanValue =false
-                yearET.error = "Enter Passing Year"
-                //showError(yearET)
+                start_yr_et.error = "Enter Start Date"
+
+            }
+            else if(end_yr.isEmpty() )
+            {
+                booleanValue =false
+                end_yr_et.error = "Enter End Date"
+
             }
             else
                 booleanValue =true
@@ -128,4 +141,6 @@ class UpdateEduAct : AppCompatActivity() {
         editText.requestFocus()
         editText.isFocusableInTouchMode=true
     }
+
+    fun String.toEditable(): Editable =  Editable.Factory.getInstance().newEditable(this)
 }

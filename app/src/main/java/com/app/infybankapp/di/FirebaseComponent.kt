@@ -2,10 +2,10 @@ package com.app.infybankapp.di
 
 import com.app.infybankapp.login.view.LoginActivity
 import com.app.infybankapp.registration.view.RegisterActivity
-import com.app.infybankapp.view.updatedata.ProfDetailAct
-import com.app.infybankapp.view.updatedata.UpdateEduAct
-import com.app.infybankapp.view.updatedata.UpdatePIAct
-import com.app.infybankapp.view.updatedata.UpdateSummary
+import com.app.infybankapp.updatedata.ProfDetailAct
+import com.app.infybankapp.updatedata.UpdateEduAct
+import com.app.infybankapp.updatedata.UpdatePIAct
+import com.app.infybankapp.updatedata.UpdateSummary
 import dagger.Component
 import javax.inject.Singleton
 

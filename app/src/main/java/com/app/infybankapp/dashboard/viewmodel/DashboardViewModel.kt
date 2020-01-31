@@ -5,10 +5,10 @@ import android.content.Intent
 import androidx.lifecycle.AndroidViewModel
 import com.app.infybankapp.dashboard.view.DashboardActivity
 import com.app.infybankapp.application.AppClass
-import com.app.infybankapp.view.updatedata.ProfDetailAct
-import com.app.infybankapp.view.updatedata.UpdateEduAct
-import com.app.infybankapp.view.updatedata.UpdatePIAct
-import com.app.infybankapp.view.updatedata.UpdateSummary
+import com.app.infybankapp.updatedata.ProfDetailAct
+import com.app.infybankapp.updatedata.UpdateEduAct
+import com.app.infybankapp.updatedata.UpdatePIAct
+import com.app.infybankapp.updatedata.UpdateSummary
 import kotlinx.android.synthetic.main.activity_dashboard.*
 import org.json.JSONObject
 
@@ -61,16 +61,16 @@ class DashboardViewModel(application: Application):AndroidViewModel(application)
                         jsonObject.getString("percentage") + "%\nPassing Year : " +
                         jsonObject.getString("year")
 
-                dashboardActivity.education_tv.setText(eduString)
+                dashboardActivity.education_tv.text = eduString
             }
             else
             {
-                dashboardActivity.education_tv.setText("NA")
+                dashboardActivity.education_tv.text = "NA"
             }
 
         } catch (e: Exception) {
             e.printStackTrace()
-            dashboardActivity.education_tv.setText("NA")
+            dashboardActivity.education_tv.text = "NA"
         }
 
 
@@ -85,16 +85,16 @@ class DashboardViewModel(application: Application):AndroidViewModel(application)
                         jsonObject.getString("company") + "\n" +
                         jsonObject.getString("start") + " - " + jsonObject.getString("end")
 
-                dashboardActivity.prof_tv.setText(eduString)
+                dashboardActivity.prof_tv.text = eduString
             }
             else
             {
-                dashboardActivity.prof_tv.setText("NA")
+                dashboardActivity.prof_tv.text = "NA"
             }
 
         } catch (e: Exception) {
             e.printStackTrace()
-            dashboardActivity.prof_tv.setText("NA")
+            dashboardActivity.prof_tv.text = "NA"
         }
     }
 

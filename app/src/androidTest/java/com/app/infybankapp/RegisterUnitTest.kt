@@ -22,6 +22,7 @@ class RegisterUnitTest {
     @Test
     fun emailValidator_CorrectEmailSubDomain_ReturnsTrue() {
         assertTrue(EmailValidator.isValidEmail("name@email.co.uk"))
+
     }
 
     @Test
