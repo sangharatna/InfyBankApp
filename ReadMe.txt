@@ -4,6 +4,5 @@ Modules;
 -Login
 -View Profile
 -Broswe Profile
-2.Design pattern :MVP
+2.Design pattern :MVVM
 3.Database:Firebase
-4.
